@@ -12,7 +12,7 @@ jobs:
     name: Create Release
     runs-on: ubuntu-latest
     permissions:
-      issues: write
+      contents: write
 
     steps:
     - name: Checkout code
