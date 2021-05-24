@@ -6,7 +6,7 @@ This Terraform module deploys a Key Vault on Azure
 
 ### NOTES
 
-* Pending
+* Name Convention specified as `kv<string><randomstring>. <randomstring>` is calculated with `random_string` resource.
 
 ## Usage in Terraform 0.15
 
