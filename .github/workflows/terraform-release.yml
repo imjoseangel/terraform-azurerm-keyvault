@@ -11,6 +11,9 @@ jobs:
   build:
     name: Create Release
     runs-on: ubuntu-latest
+    permissions:
+      issues: write
+
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
@@ -28,11 +31,11 @@ jobs:
         tag_name: ${{ steps.currenttag.outputs.tag }}
         release_name: Release ${{ steps.currenttag.outputs.tag }}
         body: |
-          # Terraform Module - Azurerm Kubernetes
+          # Terraform Module - Azurerm Key Vault
 
-          [![Terraform](https://github.com/visma-raet/terraform-azurerm-kubernetes/actions/workflows/terraform.yml/badge.svg)](https://github.com/visma-raet/terraform-azurerm-kubernetes/actions/workflows/terraform.yml)
+          [![Terraform](https://github.com/visma-raet/terraform-azurerm-keyvault/actions/workflows/terraform.yml/badge.svg)](https://github.com/visma-raet/terraform-azurerm-keyvault/actions/workflows/terraform.yml)
 
-          A [Terraform][2] module to deploys a Kubernetes cluster on AKS with application gateway support.
+          A [Terraform][2] module to deploys a Key Vault on Azure
 
           By [visma-raet][3]
 
@@ -51,7 +54,7 @@ jobs:
 
           Licensed under [the MIT License][1].
 
-          [1]: https://github.com/visma-raet/terraform-azurerm-kubernetes/blob/devel/LICENSE
+          [1]: https://github.com/visma-raet/terraform-azurerm-keyvault/blob/devel/LICENSE
           [2]: https://www.terraform.io/
           [3]: https://www.vismaraet.nl/
         draft: false
