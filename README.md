@@ -1,6 +1,6 @@
 # terraform-azurerm-keyvault
 
-## Deploys an Azure Key Vault
+## Deploys a Azure Key Vault
 
 This Terraform module deploys a Key Vault on Azure
 
