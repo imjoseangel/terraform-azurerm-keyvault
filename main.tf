@@ -44,6 +44,7 @@ resource "azurerm_key_vault" "main" {
   enabled_for_disk_encryption     = var.enabled_for_disk_encryption
   enabled_for_template_deployment = var.enabled_for_template_deployment
   soft_delete_retention_days      = var.soft_delete_retention_days
+  purge_protection_enabled        = var.purge_protection_enabled
 
   dynamic "network_acls" {
     for_each = var.network_acls != null ? [true] : []
