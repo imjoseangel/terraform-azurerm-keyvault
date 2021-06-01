@@ -1,6 +1,8 @@
 # terraform-azurerm-keyvault
 
-## Deploys a Azure Key Vault
+## Deploys a Azure Key Vault. Monitoring support can be added through Azure Log Analytics
+
+[![Terraform](https://github.com/visma-raet/terraform-azurerm-keyvault/actions/workflows/terraform.yml/badge.svg)](https://github.com/visma-raet/terraform-azurerm-keyvault/actions/workflows/terraform.yml)
 
 This Terraform module deploys a Key Vault on Azure
 
