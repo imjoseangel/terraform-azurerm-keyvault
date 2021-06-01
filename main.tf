@@ -17,6 +17,7 @@ data "azurerm_resource_group" "rgrp" {
 }
 
 resource "azurerm_resource_group" "rg" {
+  #ts:skip=accurics.azure.NS.272 RSG lock should be skipped for now.
   count    = var.create_resource_group ? 1 : 0
   name     = lower(var.resource_group_name)
   location = var.location
@@ -33,6 +34,7 @@ resource "random_string" "unique" {
   upper   = false
 }
 
+#tfsec:ignore:AZU020
 resource "azurerm_key_vault" "main" {
   name                = format("kv%s%s", lower(replace(var.name, "/[[:^alnum:]]/", "")), random_string.unique.result)
   resource_group_name = local.resource_group_name
@@ -74,4 +76,39 @@ resource "azurerm_key_vault_access_policy" "main" {
   key_permissions         = var.access_policies[count.index].key_permissions
   certificate_permissions = var.access_policies[count.index].certificate_permissions
   storage_permissions     = var.access_policies[count.index].storage_permissions
+}
+
+resource "azurerm_log_analytics_workspace" "main" {
+  count               = var.logging_enabled ? 1 : 0
+  name                = var.log_analytics_workspace_name == null ? "${var.prefix}-workspace" : var.log_analytics_workspace_name
+  location            = local.location
+  resource_group_name = local.resource_group_name
+  sku                 = var.log_analytics_workspace_sku
+  retention_in_days   = var.log_retention_in_days
+
+  tags = var.tags
+}
+
+resource "azurerm_monitor_diagnostic_setting" "main" {
+  count                      = var.logging_enabled ? 1 : 0
+  name                       = format("kvmonitor%s%s", lower(replace(var.name, "/[[:^alnum:]]/", "")), random_string.unique.result)
+  target_resource_id         = azurerm_key_vault.main.id
+  log_analytics_workspace_id = azurerm_log_analytics_workspace.main.id
+
+  log {
+    category = "AuditEvent"
+    enabled  = false
+
+    retention_policy {
+      enabled = false
+    }
+  }
+
+  metric {
+    category = "AllMetrics"
+
+    retention_policy {
+      enabled = false
+    }
+  }
 }

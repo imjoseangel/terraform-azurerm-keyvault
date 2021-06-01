@@ -77,6 +77,30 @@ variable "network_acls" {
   default = null
 }
 
+variable "logging_enabled" {
+  description = "Manages a Diagnostic Setting for the Key Vault"
+  type        = bool
+  default     = false
+}
+
+variable "log_analytics_workspace_name" {
+  description = "(Optional) The name of the Analytics workspace"
+  type        = string
+  default     = null
+}
+
+variable "log_analytics_workspace_sku" {
+  description = "The SKU (pricing level) of the Log Analytics workspace. For new subscriptions the SKU should be set to PerGB2018"
+  type        = string
+  default     = "PerGB2018"
+}
+
+variable "log_retention_in_days" {
+  description = "The retention period for the logs in days. The expected value should be between 30 to 730"
+  type        = number
+  default     = 30
+}
+
 variable "tags" {
   description = "Tags to apply to all resources created."
   type        = map(string)
