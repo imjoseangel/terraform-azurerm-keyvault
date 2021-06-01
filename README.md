@@ -22,6 +22,7 @@ module "keyvault" {
   resource_group_name   = var.terraform_rsg
   location              = var.location
   create_resource_group = true
+  logging_enabled       = true
 
   access_policies = [
     {
