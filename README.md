@@ -16,7 +16,7 @@ This Terraform module deploys a Key Vault on Azure
 data "azurerm_client_config" "current" {}
 
 module "keyvault" {
-  source = "https://github.com/visma-raet/terraform-azurerm-keyvault.git"
+  source = "github.com/visma-raet/terraform-azurerm-keyvault"
 
   name                  = var.tf_name
   resource_group_name   = var.terraform_rsg
