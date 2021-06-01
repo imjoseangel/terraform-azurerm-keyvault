@@ -53,6 +53,11 @@ variable "purge_protection_enabled" {
   default     = false
 }
 
+variable "prefix" {
+  description = "The prefix for the resources created in the specified Azure Resource Group"
+  type        = string
+  default     = "default"
+}
 
 variable "access_policies" {
   description = "Map of access policies for an object_id (user, service principal, security group) to backend."
