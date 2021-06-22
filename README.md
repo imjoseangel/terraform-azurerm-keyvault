@@ -10,7 +10,7 @@ This Terraform module deploys a Key Vault on Azure
 
 * Name Convention specified as `kv<string><randomstring>. <randomstring>` is calculated with `random_string` resource.
 
-## Usage in Terraform 0.15
+## Usage in Terraform 1.0
 
 ```terraform
 data "azurerm_client_config" "current" {}
