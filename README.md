@@ -2,7 +2,7 @@
 
 ## Deploys a Azure Key Vault. Monitoring support can be added through Azure Log Analytics
 
-[![Terraform](https://github.com/visma-raet/terraform-azurerm-keyvault/actions/workflows/terraform.yml/badge.svg)](https://github.com/visma-raet/terraform-azurerm-keyvault/actions/workflows/terraform.yml)
+[![Terraform](https://github.com/imjoseangel/terraform-azurerm-keyvault/actions/workflows/terraform.yml/badge.svg)](https://github.com/imjoseangel/terraform-azurerm-keyvault/actions/workflows/terraform.yml)
 
 This Terraform module deploys a Key Vault on Azure
 
@@ -16,7 +16,7 @@ This Terraform module deploys a Key Vault on Azure
 data "azurerm_client_config" "current" {}
 
 module "keyvault" {
-  source = "github.com/visma-raet/terraform-azurerm-keyvault"
+  source = "github.com/imjoseangel/terraform-azurerm-keyvault"
 
   name                  = var.tf_name
   resource_group_name   = var.terraform_rsg
@@ -38,7 +38,7 @@ module "keyvault" {
 
 ## Authors
 
-Originally created by [Visma-raet](http://github.com/visma-raet)
+Originally created by [imjoseangel](http://github.com/imjoseangel)
 
 ## License
 
