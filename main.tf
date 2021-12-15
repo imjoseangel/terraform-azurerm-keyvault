@@ -36,7 +36,7 @@ resource "random_string" "unique" {
 
 #tfsec:ignore:AZU020
 resource "azurerm_key_vault" "main" {
-  name                = format("kv%s%s", lower(replace(var.name, "/[[:^alnum:]]/", "")), random_string.unique.result)
+  name                = lower(var.name)
   resource_group_name = local.resource_group_name
   location            = local.location
   tenant_id           = data.azurerm_client_config.current.tenant_id
@@ -58,7 +58,7 @@ resource "azurerm_key_vault" "main" {
     }
   }
 
-  tags = merge({ "ResourceName" = format("kv%s%s", lower(replace(var.name, "/[[:^alnum:]]/", "")), random_string.unique.result) }, var.tags, )
+  tags = merge({ "ResourceName" = lower(var.name) }, var.tags, )
 }
 
 #---------------------------------------------------------
@@ -91,7 +91,7 @@ resource "azurerm_log_analytics_workspace" "main" {
 
 resource "azurerm_monitor_diagnostic_setting" "main" {
   count                      = var.logging_enabled ? 1 : 0
-  name                       = format("kvmonitor%s%s", lower(replace(var.name, "/[[:^alnum:]]/", "")), random_string.unique.result)
+  name                       = format("%s-diag", lower(var.name))
   target_resource_id         = azurerm_key_vault.main.id
   log_analytics_workspace_id = azurerm_log_analytics_workspace.main[0].id
 
