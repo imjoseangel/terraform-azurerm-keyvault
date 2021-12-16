@@ -28,11 +28,6 @@ resource "azurerm_resource_group" "rg" {
 #---------------------------------------------------------
 # Key-vault Creation or selection
 #---------------------------------------------------------
-resource "random_string" "unique" {
-  length  = 10
-  special = false
-  upper   = false
-}
 
 #tfsec:ignore:AZU020
 resource "azurerm_key_vault" "main" {
