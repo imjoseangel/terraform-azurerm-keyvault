@@ -73,15 +73,10 @@ resource "azurerm_key_vault_access_policy" "main" {
   storage_permissions     = var.access_policies[count.index].storage_permissions
 }
 
-resource "azurerm_log_analytics_workspace" "main" {
+data "azurerm_log_analytics_workspace" "main" {
   count               = var.logging_enabled ? 1 : 0
-  name                = var.log_analytics_workspace_name == null ? "${var.prefix}-workspace" : var.log_analytics_workspace_name
-  location            = local.location
-  resource_group_name = local.resource_group_name
-  sku                 = var.log_analytics_workspace_sku
-  retention_in_days   = var.log_retention_in_days
-
-  tags = var.tags
+  name                = var.log_analytics_workspace_name
+  resource_group_name = var.log_analytics_resource_group
 }
 
 resource "azurerm_monitor_diagnostic_setting" "main" {

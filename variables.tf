@@ -99,16 +99,10 @@ variable "log_analytics_workspace_name" {
   default     = null
 }
 
-variable "log_analytics_workspace_sku" {
-  description = "The SKU (pricing level) of the Log Analytics workspace. For new subscriptions the SKU should be set to PerGB2018"
+variable "log_analytics_resource_group" {
+  description = "The resource group of the Analytics workspace"
   type        = string
-  default     = "PerGB2018"
-}
-
-variable "log_retention_in_days" {
-  description = "The retention period for the logs in days. The expected value should be between 30 to 730"
-  type        = number
-  default     = 30
+  default     = null
 }
 
 variable "tags" {
