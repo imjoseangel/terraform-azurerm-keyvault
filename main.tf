@@ -83,7 +83,7 @@ resource "azurerm_monitor_diagnostic_setting" "main" {
   count                      = var.logging_enabled ? 1 : 0
   name                       = format("%s-diag", lower(var.name))
   target_resource_id         = azurerm_key_vault.main.id
-  log_analytics_workspace_id = azurerm_log_analytics_workspace.main[0].id
+  log_analytics_workspace_id = data.azurerm_log_analytics_workspace.main[0].id
 
   log {
     category = "AuditEvent"
