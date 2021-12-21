@@ -87,18 +87,29 @@ resource "azurerm_monitor_diagnostic_setting" "main" {
 
   log {
     category = "AuditEvent"
-    enabled  = false
+    enabled  = true
 
     retention_policy {
-      enabled = false
+      days    = 7
+      enabled = true
     }
   }
 
+  log {
+    category = "AzurePolicyEvaluationDetails"
+    enabled  = true
+
+    retention_policy {
+      days    = 7
+      enabled = true
+    }
+  }
   metric {
     category = "AllMetrics"
 
     retention_policy {
-      enabled = false
+      days    = 7
+      enabled = true
     }
   }
 }
